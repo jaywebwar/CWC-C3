@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,6 +59,7 @@ public class PlayerControllerX : MonoBehaviour
             gameOver = true;
             Debug.Log("Game Over!");
             Destroy(other.gameObject);
+            StartCoroutine(DestroySelf());
         } 
 
         // if player collides with money, fireworks
@@ -77,4 +79,9 @@ public class PlayerControllerX : MonoBehaviour
 
     }
 
+    IEnumerator DestroySelf()
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
+    }
 }
